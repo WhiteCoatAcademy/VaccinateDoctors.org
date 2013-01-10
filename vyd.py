@@ -46,6 +46,20 @@ def page_index():
 
 
 ######
+# *** Magic per-state / city / group-targeted URLs
+######
+
+targets = ['alabama', 'alaska']
+
+@app.route("/<target>/")
+def localized_branding(target):
+    if target in ('moms', 'dads', 'parents', 'patients'):
+        return render_template('target_group.html')
+    else:
+        return render_template('target_state.html')
+
+
+######
 # *** Odd URLs and support functions
 ######
 
@@ -55,7 +69,7 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 's'),
                                'favicon.ico', mimetype='image/x-icon')
 
-# Return robotos from the root path
+# Return robots from the root path
 @app.route('/robots.txt')
 def robots():
     return send_from_directory(os.path.join(app.root_path, 's'),
@@ -76,7 +90,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5005, debug=True)
 else:
     # We're probably being Frozen. Cool.
-    app.config['FREEZER_DESTINATION'] = './vd_frozen/'
+    app.config['FREEZER_DESTINATION'] = './vyd_frozen/'
 
     app.config['prod'] = True
     # We don't really support SSL given Cloudfront, but ...

@@ -67,6 +67,16 @@ def main():
             print("*** Look for errors here *** \n")
             vyd = imp.load_source('vyd', 'vyd.py')
             frozen_vyd = Freezer(vyd.app)
+
+            # Targets required for URL generators for Flask static.
+            targets = vyd.targets
+
+            @frozen_vyd.register_generator
+            def localized_branding():
+                for target in targets:
+                    print(target)
+                    yield {'target': target}
+
             frozen_vyd.freeze()
             print("")
         else:
