@@ -74,7 +74,6 @@ def main():
             @frozen_vyd.register_generator
             def localized_branding():
                 for target in targets:
-                    print(target)
                     yield {'target': target}
 
             frozen_vyd.freeze()
