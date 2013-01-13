@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Template &middot; Vaccinate Your Doctors</title>
+    <title>{{ target }} &middot; Vaccinate Your Doctors</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block lol %}{% endblock %}">
     <meta name="author" content="Nick Semenkovich (@semenko) http://web.mit.edu/semenko/">
@@ -23,8 +23,10 @@
             padding-top: 20px;
             padding-bottom: 60px;
         }
-
-            /* Custom container */
+        .navbar.affix {
+            position: fixed;
+            top: 0px;
+         }
         .container {
             margin: 0 auto;
             max-width: 1000px;
@@ -40,7 +42,7 @@
         }
             /* Main marketing message and sign up button */
         .jumbotron {
-            margin: 80px 0;
+            margin: 60px 0;
             text-align: center;
         }
         .jumbotron h1 {
@@ -116,20 +118,19 @@
     <link rel="apple-touch-icon-precomposed" href="/s/ico/apple-touch-icon-57-precomposed.png"> #}
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar">
 
 <div class="container">
     <div class="masthead">
-        <h3 class="muted">Missouri, Vaccinate Your Doctors!</h3>
+        <h3 class="muted">{{ target }}, Vaccinate Your Doctors!</h3>
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Why?</a></li>
-                        <li><a href="#">Who's Onboad?</a></li>
-                        <li><a href="#">Downloads</a></li>
-                        <li><a href="#">Get Involved</a></li>
+                        <li><a href="#why-vaccinate">Why Vaccinate?</a></li>
+                        <li><a href="#whos-onboard">Who's Onboad?</a></li>
+                        <li><a href="#get-involved">Get Involved</a></li>
                     </ul>
                 </div>
             </div>
@@ -140,12 +141,13 @@
     <!-- Make this a rotating experiment for some kinda' actions //-->
     <div class="jumbotron">
         <h1>Flu Kills</h1>
-        <p class="lead">Each year, thousands of patients catch the flu from their health care providers.</p><br><br>
+        <p class="lead">Each year, thousands of patients catch the flu from their doctors and nurses.</p><br><br>
         <a class="btn btn-large btn-primary" href="#"><i class="icon-user-md icon-white"></i> It's Time to Vaccinate Doctors <i class="icon-chevron-down icon-white"></i></a>
     </div>
 
     <hr>
 
+    <section id="why-vaccinate">
     <div class="marketing">
         <div class="centered">
             <h1>The Flu Kills Patients</h1>
@@ -155,7 +157,7 @@
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140" alt="Newborns can be killed by the flu">
                 <h2>Newborns</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                <p>Newborn's don't have strong immune systems yet &mdash; catching the flu</p>
             </div><!-- /.span4 -->
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140" alt="Cancer patients can be killed by the flu">
@@ -170,13 +172,15 @@
         </div><!-- /.row -->
 
     </div>
+        </section>
 
+{#
     <!-- Example row of columns -->
     <div class="row-fluid">
         <div class="span4">
             <img class="img-circle" data-src="holder.js/140x140">
             <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p>ibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
         <div class="span4">
@@ -192,6 +196,7 @@
             <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
     </div>
+    #}
 
     <hr>
 
@@ -204,6 +209,22 @@
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-<script src="s/holder.js"></script>
+<script src="{{ static('holder.js') }}"></script>
+<script>
+// Sexy smooth scroll
+$('.nav a').click(function(){
+    $('html, body').animate({
+       scrollTop: $( $(this).attr('href') ).offset().top
+    }, 500);
+    return false;
+});
+    !function($) {
+        $(function() {
+            $('.navbar').affix({
+                offset: $('.navbar').position() });
+        });
+    }(window.jQuery);
+$('.masthead').height($(".masthead").height());
+</script>
 </body>
 </html>

@@ -70,9 +70,9 @@ targets = states + groups
 @app.route("/<target>/")
 def localized_branding(target):
     if target in groups:
-        return render_template('target_group.html')
+        return render_template('target_group.html', target=target.replace('-', ' ').title())
     else:
-        return render_template('target_state.html')
+        return render_template('target_state.html', target=target.replace('-', ' ').title())
 
 
 ######
