@@ -26,7 +26,7 @@
         .navbar.affix {
             position: fixed;
             top: 0px;
-         }
+        }
         .container {
             margin: 0 auto;
             max-width: 1000px;
@@ -78,7 +78,7 @@
             margin-right: 10px;
         }
 
-        /* Customize the navbar links to be fill the entire space of the .navbar */
+            /* Customize the navbar links to be fill the entire space of the .navbar */
         .navbar .navbar-inner {
             padding: 0;
         }
@@ -127,9 +127,9 @@
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="#home">Home</a></li>
                         <li><a href="#why-vaccinate">Why Vaccinate?</a></li>
-                        <li><a href="#whos-onboard">Who's Onboad?</a></li>
+                        <li><a href="#whos-onboard">Who's Onboard?</a></li>
                         <li><a href="#get-involved">Get Involved</a></li>
                     </ul>
                 </div>
@@ -137,44 +137,45 @@
         </div><!-- /.navbar -->
     </div>
 
-    <!-- Jumbotron -->
     <!-- Make this a rotating experiment for some kinda' actions //-->
-    <div class="jumbotron">
-        <h1>Flu Kills</h1>
-        <p class="lead">Each year, thousands of patients catch the flu from their doctors and nurses.</p><br><br>
-        <a class="btn btn-large btn-primary" href="#"><i class="icon-user-md icon-white"></i> It's Time to Vaccinate Doctors <i class="icon-chevron-down icon-white"></i></a>
-    </div>
+    <section id="home">
+        <div class="jumbotron">
+            <h1>Flu Kills</h1>
+            <p class="lead">Each year, thousands of patients catch the flu from their doctors and nurses.</p><br><br>
+            <a class="btn btn-large btn-primary" href="#"><i class="icon-user-md icon-white"></i> It's Time to Vaccinate Doctors <i class="icon-chevron-down icon-white"></i></a>
+        </div>
+    </section>
 
     <hr>
 
     <section id="why-vaccinate">
-    <div class="marketing">
-        <div class="centered">
-            <h1>The Flu Kills Patients</h1>
-            <p class="lead">Though you might only miss some work, the flu is a serious threat to others</p>
-        </div><br><br>
-        <div class="row-fluid">
-            <div class="span4">
-                <img class="img-circle" data-src="holder.js/140x140" alt="Newborns can be killed by the flu">
-                <h2>Newborns</h2>
-                <p>Newborn's don't have strong immune systems yet &mdash; catching the flu</p>
-            </div><!-- /.span4 -->
-            <div class="span4">
-                <img class="img-circle" data-src="holder.js/140x140" alt="Cancer patients can be killed by the flu">
-                <h2>Cancer Patients</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            </div><!-- /.span4 -->
-            <div class="span4">
-                <img class="img-circle" data-src="holder.js/140x140" alt="The elderly can be killed by the flu">
-                <h2>The Elderly</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            </div><!-- /.span4 -->
-        </div><!-- /.row -->
+        <div class="marketing">
+            <div class="centered">
+                <h1>The Flu Kills Patients</h1>
+                <p class="lead">Though you might only miss some work, the flu is a serious threat to others</p>
+            </div><br><br>
+            <div class="row-fluid">
+                <div class="span4">
+                    <img class="img-circle" data-src="holder.js/140x140" alt="Newborns can be killed by the flu">
+                    <h2>Newborns</h2>
+                    <p>Newborn's don't have strong immune systems yet &mdash; catching the flu</p>
+                </div><!-- /.span4 -->
+                <div class="span4">
+                    <img class="img-circle" data-src="holder.js/140x140" alt="Cancer patients can be killed by the flu">
+                    <h2>Cancer Patients</h2>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                </div><!-- /.span4 -->
+                <div class="span4">
+                    <img class="img-circle" data-src="holder.js/140x140" alt="The elderly can be killed by the flu">
+                    <h2>The Elderly</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                </div><!-- /.span4 -->
+            </div><!-- /.row -->
 
-    </div>
-        </section>
+        </div>
+    </section>
 
-{#
+    {#
     <!-- Example row of columns -->
     <div class="row-fluid">
         <div class="span4">
@@ -211,20 +212,20 @@
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 <script src="{{ static('holder.js') }}"></script>
 <script>
-// Sexy smooth scroll
-$('.nav a').click(function(){
-    $('html, body').animate({
-       scrollTop: $( $(this).attr('href') ).offset().top
-    }, 500);
-    return false;
-});
+    // Sexy smooth scroll
+    $('.nav a').click(function(){
+        $('html, body').animate({
+            scrollTop: $( $(this).attr('href') ).offset().top
+        }, 500);
+        return false;
+    });
     !function($) {
         $(function() {
             $('.navbar').affix({
                 offset: $('.navbar').position() });
         });
     }(window.jQuery);
-$('.masthead').height($(".masthead").height());
+    $('.masthead').height($(".masthead").height());
 </script>
 </body>
 </html>
