@@ -44,6 +44,11 @@ def redirect_index():
 def page_index():
     return render_template('index.html')
 
+# TEMPORARY
+@app.route("/redirect.html")
+def page_redirect():
+    return render_template('redirect.html')
+
 
 ######
 # *** Magic per-state / city / group-targeted URLs

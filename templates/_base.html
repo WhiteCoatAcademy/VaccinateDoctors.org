@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <link href="s/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <style type="text/css">
         body {
             padding-top: 20px;
@@ -31,6 +30,8 @@
             max-width: 1000px;
         }
         .container > hr {
+            height: 3px;
+            background:#CCC;
             margin: 60px 0;
         }
 
@@ -75,9 +76,7 @@
             margin-right: 10px;
         }
 
-
-
-            /* Customize the navbar links to be fill the entire space of the .navbar */
+        /* Customize the navbar links to be fill the entire space of the .navbar */
         .navbar .navbar-inner {
             padding: 0;
         }
@@ -106,7 +105,7 @@
             border-radius: 0 3px 3px 0;
         }
     </style>
-    <link href="s/bootstrap-responsive.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
     <!--[if lte IE 6]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
     <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
     <!-- NOTE: Our favicon is CC-BY, derived from http://www.fatcow.com/free-icons //-->
@@ -141,14 +140,17 @@
     <!-- Make this a rotating experiment for some kinda' actions //-->
     <div class="jumbotron">
         <h1>Flu Kills</h1>
-        <p class="lead">Each year, thousands of patients catch the flu from their health care providers.</p>
-        <a class="btn btn-large btn-primary" href="#"><i class="icon-user icon-white"></i> It's Time to Vaccinate Doctors</a>
+        <p class="lead">Each year, thousands of patients catch the flu from their health care providers.</p><br><br>
+        <a class="btn btn-large btn-primary" href="#"><i class="icon-user-md icon-white"></i> It's Time to Vaccinate Doctors <i class="icon-chevron-down icon-white"></i></a>
     </div>
 
     <hr>
 
     <div class="marketing">
-        <div class="centered"><h1>The Flu Can Kill Patients</h1></div><br><br>
+        <div class="centered">
+            <h1>The Flu Kills Patients</h1>
+            <p class="lead">Though you might only miss some work, the flu is a serious threat to others</p>
+        </div><br><br>
         <div class="row-fluid">
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140" alt="Newborns can be killed by the flu">
@@ -199,25 +201,9 @@
         <p>This site is licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/us/deed.en_US" target="_blank">CC BY SA 3.0</a> license.</p>
     </div>
 
-</div> <!-- /container -->
-
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="s/jquery.js"></script>
-<script src="s/bootstrap-transition.js"></script>
-<script src="s/bootstrap-alert.js"></script>
-<script src="s/bootstrap-modal.js"></script>
-<script src="s/bootstrap-dropdown.js"></script>
-<script src="s/bootstrap-scrollspy.js"></script>
-<script src="s/bootstrap-tab.js"></script>
-<script src="s/bootstrap-tooltip.js"></script>
-<script src="s/bootstrap-popover.js"></script>
-<script src="s/bootstrap-button.js"></script>
-<script src="s/bootstrap-collapse.js"></script>
-<script src="s/bootstrap-carousel.js"></script>
-<script src="s/bootstrap-affix.js"></script>
-<script src="s/bootstrap-typeahead.js"></script>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 <script src="s/holder.js"></script>
 </body>
 </html>
