@@ -117,9 +117,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/s/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/s/ico/apple-touch-icon-57-precomposed.png"> #}
 </head>
-
-<body data-spy="scroll" data-target=".navbar">
-
+{# <img src="{{ static('states/' + shortcode + '.png') }}" style="float:left"> #}
+<body data-spy="scroll" data-offset="100" data-target=".navbar-inner">
+<section id="top"></section> <!-- Spacer for navbar highlights //-->
 <div class="container">
     <div class="masthead">
         <h3 class="muted">{{ target }}, Vaccinate Your Doctors!</h3>
@@ -127,9 +127,9 @@
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav">
-                        <li class="active"><a href="#home">Home</a></li>
+                        <li class="active"><a href="#top">Home</a></li>
                         <li><a href="#why-vaccinate">Why Vaccinate?</a></li>
-                        <li><a href="#whos-onboard">Who's Onboard?</a></li>
+                        <li><a href="#safest-hospitals">Safest Hospitals</a></li>
                         <li><a href="#get-involved">Get Involved</a></li>
                     </ul>
                 </div>
@@ -142,7 +142,7 @@
         <div class="jumbotron">
             <h1>Flu Kills</h1>
             <p class="lead">Each year, thousands of patients catch the flu from their doctors and nurses.</p><br><br>
-            <a class="btn btn-large btn-primary" href="#"><i class="icon-user-md icon-white"></i> It's Time to Vaccinate Doctors <i class="icon-chevron-down icon-white"></i></a>
+            <a class="btn btn-large btn-primary" href="#why-vaccinate"><i class="icon-user-md icon-white"></i> &nbsp; It's Time to Vaccinate Doctors &nbsp; <i class="icon-chevron-down icon-white"></i></a>
         </div>
     </section>
 
@@ -172,26 +172,53 @@
                     <!-- Flickr CC BY SA: //-->
                     <img class="img-circle" data-src="holder.js/140x140" alt="The elderly can be killed by the flu">
                     <h2>The Elderly</h2>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p>Our grandparents are the most likely to die from the flu, which can cause pneumonia and other serious infections.</p>
                 </div><!-- /.span4 -->
             </div><!-- /.row -->
-
         </div>
-        <div><iframe width="300" height="250" src="http://www.google.org/flutrends/embed/en_us/us/#US-MO" frameborder="0"></iframe></div>
     </section>
 
     <hr>
 
-    <section id="whos-onboard">
-        Whos Onboard
+    <section id="flu-stats">
+        <div class="marketingmm">
+            <div class="row-fluid">
+                <div class="span8">
+                    
+                </div>
+                <div class="span4">
+                    <div class="centered">
+                        {% if shortcode is sameas "" %}
+                        <p class="lead">Current U.S. Flu Cases</p>
+                        {% else %}
+                        <p class="lead">{{ target }}'s Current Flu Cases</p>
+                        {% endif %}
+                        <iframe width="300" height="250" src="http://www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}" frameborder="0"></iframe>
+                    </div>
+                </div><!-- /.span4 -->
+            </div><!-- /.row -->
+        </div>
     </section>
 
     <hr>
 
+    <section id="safest-hospitals">
+        <div class="marketing">
+            <div class="centered">
+                <h1>You Deserve the Safest Hospital</h1>
+                <p class="lead">Choose a {{ target }} hospital with a vaccine requirement</p>
+            </div><br><br>
+            <div class="row-fluid">
+            </div><!-- /.row -->
+        </div>
+    </section>
+
+    <hr>
+    {#
     <section id="get-involved">
-        Get Involved
+        Get Involved<br><br><br>br<br><br><br><br>br<br><br><br><br>br<br><br><br><br>br<br>
     </section>
-
+    #}
     {#
     <!-- Example row of columns -->
     <div class="row-fluid">

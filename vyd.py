@@ -44,35 +44,35 @@ def redirect_index():
 def page_index():
     return render_template('index.html')
 
-# TEMPORARY
-@app.route("/redirect.html")
-def page_redirect():
-    return render_template('redirect.html')
-
 
 ######
 # *** Magic per-state / city / group-targeted URLs
 ######
 
-# TODO: Add US territories.
-states = ['alabama', 'alaska', 'arizona', 'arkansas', 'california', 'colorado', 'connecticut', 'delaware', 'dc',
-           'florida', 'georgia', 'hawaii', 'idaho', 'illinois', 'indiana', 'iowa', 'kansas', 'kentucky',
-           'louisiana', 'maine', 'maryland', 'massachusetts', 'michigan', 'minnesota', 'mississippi', 'missouri',
-           'montana', 'nebraska', 'nevada', 'new-hampshire', 'new-jersey', 'new-mexico', 'new-york', 'north-carolina',
-           'north-dakota', 'ohio', 'oklahoma', 'oregon', 'pennsylvania', 'rhode-island',
-           'south-carolina', 'south-dakota', 'tennessee', 'texas', 'utah', 'vermont', 'virginia',
-           'washington', 'west-virginia', 'wisconsin', 'wyoming']
+# TODO: + US Territories?
+# This is needed for some Google Flu Trends and other shortcuts.
+states = {'alabama':'AL', 'alaska':'AK', 'arizona':'AZ', 'arkansas':'AR', 'california':'CA', 'colorado':'CO',
+          'connecticut':'CT', 'dc':'DC', 'delaware':'DE', 'florida':'FL', 'georgia':'GA', 'hawaii':'HI',
+          'idaho':'ID', 'illinois':'IL', 'indiana':'IN', 'iowa':'IA', 'kansas':'KS', 'kentucky':'KT', 'louisiana':'LA',
+          'maine':'ME', 'maryland':'MD', 'massachusetts':'MA', 'michigan':'MI', 'minnesota':'MN', 'mississippi':'MS',
+          'missouri':'MO', 'montana':'MT', 'nebraska':'NE', 'nevada':'NV', 'new-hampshire':'NH', 'new-jersey':'NJ',
+          'new-mexico':'NM', 'new-york':'NY', 'north-carolina':'NC', 'north-dakota':'ND', 'ohio':'OH', 'oklahoma':'OK',
+          'oregon':'OR', 'pennsylvania':'PA', 'rhode-island':'RI', 'south-carolina':'SC', 'south-dakota':'SD',
+          'tennessee':'TN', 'texas':'TX', 'utah':'UT', 'vermont':'VT', 'virginia':'VA', 'washington':'WA',
+          'west-virginia':'WV', 'wisconsin':'WI', 'wyoming':'WY'}
 
 groups = ['moms', 'dads', 'parents', 'patients']
 
-targets = states + groups
+targets = states.keys() + groups
 
 @app.route("/<target>/")
 def localized_branding(target):
     if target in groups:
-        return render_template('target_group.html', target=target.replace('-', ' ').title())
+        # Targeting a specific group (moms, etc.)
+        return render_template('target_group.html', target=target.replace('-', ' ').title(), shortcode="")
     else:
-        return render_template('target_state.html', target=target.replace('-', ' ').title())
+        # Targeting a State
+        return render_template('target_state.html', target=target.replace('-', ' ').title(), shortcode=states[target])
 
 
 ######
