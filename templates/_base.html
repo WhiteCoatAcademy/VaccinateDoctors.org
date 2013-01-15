@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{ target }} &middot; Vaccinate Your Doctors</title>
+    <title>{{ target }} &middot; Vaccinate Your Doctors &amp; Nurses</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block lol %}{% endblock %}">
+    <meta name="description" content="{{ target }}, make sure your doctors &amp; nurses are vaccinated for the flu.">
     <meta name="author" content="Nick Semenkovich (@semenko) http://web.mit.edu/semenko/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <script type="text/javascript">
@@ -25,7 +25,7 @@
         }
         .navbar.affix {
             position: fixed;
-            top: 0px;
+            top: 0;
         }
         .container {
             margin: 0 auto;
@@ -60,7 +60,7 @@
 
             /* Supporting marketing content */
         .marketing {
-            margin: 60px 0;
+            margin: -20px 0;
         }
         .marketing p + h4 {
             margin-top: 28px;
@@ -180,11 +180,52 @@
 
     <hr>
 
-    <section id="flu-stats">
-        <div class="marketingmm">
+    <div class="marketing">
+        <div class="row-fluid">
+            <div class="span4">
+                <h4><i class="icon-hospital icon-large"></i> Reduce Hospitalizations</h4>
+                Each year, the flu causes <u>200,000 hospitalizations</u>, which can bankrupt or destroy families.
+            </div>
+            <div class="span4">
+                <h4><i class="icon-ambulance icon-large"></i> Prevent Deaths</h4>
+                The flu causes <u>36,000 deaths</u> each year, all of which are preventable.
+            </div>
+            <div class="span4">
+                <h4><i class="icon-group icon-large"></i> Herd Immunity</h4>
+                Currently, less than 50% of doctors and nurses get the vaccine &mdash; well below the 80&ndash;90% required for "herd immunity" to protect others.
+            </div>
+        </div><br><br><br>
+        <div class="row-fluid">
+            <div class="span4">
+                <h4><i class="icon-money icon-large"></i> Saves Medical Costs</h4>
+                With rising healthcare costs, requiring flu vaccines for doctors &amp; nurses is a great way to reduce expenses.
+            </div>
+            <div class="span4">
+                <h4><i class="icon-ok-circle icon-large"></i> Supported by Key Groups</h4>
+                Requiring flu shots for doctors &amp; nurses is supported by <u>every major medical association</u> and hundreds of hospitals.
+            </div>
+            <div class="span4">
+                <h4><i class="icon-user-md icon-large"></i> Other Vaccines</h4>
+                We already require many other vaccines for doctors &amp; nurses, including measles, mumps, rubella, and hepatits B. It's time to include the flu.
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <section id="safest-hospitals">
+        <div class="marketing">
+            <div class="centered">
+                <h1>You Deserve the Safest Hospital</h1>
+                {% if shortcode is sameas "" %}
+                <p class="lead">Choose a hospital with a vaccine requirement</p>
+                {% else %}
+                <p class="lead">Choose a {{ target }} hospital with a vaccine requirement</p>
+                {% endif %}
+            </div><br><br>
             <div class="row-fluid">
-                <div class="span8">
-                    
+                <div class="span8 centered"><br><br>
+                    <p class="lead">Hospital list coming soon!</p>
                 </div>
                 <div class="span4">
                     <div class="centered">
@@ -202,51 +243,43 @@
 
     <hr>
 
-    <section id="safest-hospitals">
+    {#
+    <section id="get-involved">
         <div class="marketing">
             <div class="centered">
-                <h1>You Deserve the Safest Hospital</h1>
-                <p class="lead">Choose a {{ target }} hospital with a vaccine requirement</p>
+                <h1>Get Involved</h1>
+                {% if shortcode is sameas "" %}
+                <p class="lead">Make a difference in your community</p>
+                {% else %}
+                <p class="lead">Make a difference for {{ target }}</p>
+                {% endif %}
             </div><br><br>
             <div class="row-fluid">
+                <div class="span8">
+                    <h2>Vaccine Benefits</h2>
+                    <ul>
+                        <li>LI element</li>
+                    </ul>
+                </div>
+                <div class="span4">
+                    <div class="centered">
+                        {% if shortcode is sameas "" %}
+                        <p class="lead">Current U.S. Flu Cases</p>
+                        {% else %}
+                        <p class="lead">{{ target }}'s Current Flu Cases</p>
+                        {% endif %}
+                        <iframe width="300" height="250" src="http://www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}" frameborder="0"></iframe>
+                    </div>
+                </div><!-- /.span4 -->
             </div><!-- /.row -->
         </div>
     </section>
-
-    <hr>
-    {#
-    <section id="get-involved">
-        Get Involved<br><br><br>br<br><br><br><br>br<br><br><br><br>br<br><br><br><br>br<br>
-    </section>
-    #}
-    {#
-    <!-- Example row of columns -->
-    <div class="row-fluid">
-        <div class="span4">
-            <img class="img-circle" data-src="holder.js/140x140">
-            <h2>Heading</h2>
-            <p>ibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <img class="img-circle" data-src="holder.js/140x140">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <img class="img-circle" data-src="holder.js/140x140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-    </div>
     #}
 
     <hr>
 
     <div class="footer" style="font-size:small">
-        <p>The <a href="//www.vaccinatedoctors.org" target="_blank">Vaccinate Doctors Initiative</a> is a project from <a href="http://www.clindesk.org/" target="_blank">ClinDesk, Inc.</a> &amp; <a href="http://www.whitecoatacademy.org" target="_blank">White Coat Academy</a></p>
+        <p>The <a href="//www.vaccinatedoctors.org" target="_blank">Vaccinate Doctors Initiative</a> is a project from <a href="//www.clindesk.org/" target="_blank">ClinDesk, Inc.</a> &amp; <a href="//www.whitecoatacademy.org" target="_blank">White Coat Academy</a></p>
         <span style="float:right;"><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/us/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/us/80x15.png" /></a></span>
         <p>This site is licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/us/deed.en_US" target="_blank">CC BY SA 3.0</a> license.</p>
     </div>

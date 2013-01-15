@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Vaccinate Your Doctors &middot; The Flu Kills Patients</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nurses and doctors need to have the flu shot, otherwise you're at risk.">
+    <meta name="description" content="Require the flu shot for doctors and nurses. Don't let your health care provider give you the flu.">
     <meta name="author" content="Nick Semenkovich (@semenko) http://web.mit.edu/semenko/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <script type="text/javascript">
@@ -18,6 +18,7 @@
         })();
     </script>
     <script type="text/javascript">
+        if (!window.console) console = {log: function() {}};
         // Check these + DC?
         var region_to_url = {'AL':'alabama', 'AK':'alaska', 'AZ':'arizona', 'AR':'arkansas', 'CA':'california',
             'CO':'colorado', 'CT':'connecticut', 'DE':'delaware', 'DC':'dc', 'FL':'florida', 'GA':'georgia',
@@ -43,6 +44,35 @@
                 }
             }
         }
+        // Alternate geolocation, for if primary fails
+        function secondary_gip(g2resp) {
+            if (g2resp.statusCode == "OK") {
+                if (g2resp.countryCode == "US") {
+                    // Y U NO ANSI STANDARD 2 LETTER CODE?!?!?
+                    // Loop over the existing region map (no sense in reversing, since only used once.)
+                    var full_state = g2resp.regionName.toLowerCase();
+                    for (var state_two_letter in region_to_url) {
+                        if (region_to_url[state_two_letter] == full_state) {
+                            region = state_two_letter;
+                            break;
+                        }
+                    }
+                    if (full_state == "district of columbia") { region = "DC"; }
+                    tryRedirect();
+                } else {
+                    _gaq.push(['_trackEvent','NonUS-G2', g2resp.countryCode]);
+                    console.warn('Non-US-G2');
+                }
+            } else {
+                _gaq.push(['_trackEvent', 'XHR-G2-Fail', g2resp.statusCode]);
+                console.warn('G2-FAIL');
+            }
+        }
+        function altGeoLoc() {
+            var tag = document.createElement("script");
+            tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=secondary_gip";
+            document.getElementsByTagName("head")[0].appendChild(tag);
+        }
         try {
             var region = null;
             var cIndex = document.cookie.indexOf("region=");
@@ -57,19 +87,20 @@
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {
                             var resp = JSON.parse(xhr.responseText);
-                            console.warn(resp);
                             if (resp.country_code == "US") {
                                 region = resp.region_code;
                                 tryRedirect();
                             } else {
                                 // NON-US
                                 _gaq.push(['_trackEvent','NonUS', resp.country_code]);
-                                console.warn('Non-US?');
+                                console.warn('Non-US-G1');
+                                altGeoLoc();
                             }
                         } else {
                             // Alternate geolocation?
                             _gaq.push(['_trackEvent', 'XHRFail', xhr.status]);
-                            console.warn('Geolocation fail.')
+                            console.warn('G1-FAIL');
+                            altGeoLoc();
                         }
                     }
                 };
@@ -80,13 +111,13 @@
             _gaq.push(['_trackEvent','Error','Serious', err]);
             console.warn(err);
         }
+        // If nothing happens after 2 seconds, call secondary GIP function.
+        setTimeout(function(){ altGeoLoc(); }, 2000);
     </script>
-    <!--[if lt IE 7]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
-    <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
 </head>
 <body>
-<center><h1>Where are you?</h1>
-    <div style="height: 495px; width: 800px; "><map name="ImageMap_1_1163747142" id="ImageMap_1_1163747142">
+<div id="hidden" style="display:none"><center><h1>Click On Your State</h1>
+    <div style="height: 495px; width: 800px; "><map name="US_STATE_MAP" id="US_STATE_MAP">
         <area href="alabama" shape="poly" coords="537,310,556,377,518,382,518,395,506,391,504,312" alt="Alabama" title="Alabama" />
         <area href="alaska" shape="poly" coords="127,381,128,451,148,457,171,481,171,491,153,491,132,461,98,456,83,473,10,482,55,456,34,431,43,391,60,375,89,365" alt="Alaska" title="Alaska" />
         <area href="arizona" shape="poly" coords="110,330,159,362,191,368,204,271,134,258,131,272,123,272,117,290,126,304" alt="Arizona" title="Arizona" />
@@ -145,9 +176,10 @@
         <area href="connecticut" shape="rect" coords="727,185,797,203" alt="Connecticut" title="Connecticut" />
         <area href="west-virginia" shape="rect" coords="716,284,795,301" alt="West Virginia" title="West Virginia" />
         <area href="vermont" shape="rect" coords="607,53,651,72" alt="Vermont" title="Vermont" />
-        <area href="rhode-island" shape="rect" coords="720,163,796,184" alt="Rhode Island" title="Rhode Island" /></map><img alt="" src="{{ static('wiki_map_CC_BY.png') }}" width="800" height="495" usemap="#ImageMap_1_1163747142" /></div>
-</center>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        <area href="rhode-island" shape="rect" coords="720,163,796,184" alt="Rhode Island" title="Rhode Island" /></map><img alt="" src="{{ static('wiki_map_CC_BY.png') }}" width="800" height="495" usemap="#US_STATE_MAP" /></div>
+</center></div>
+<script>
+    setTimeout(function(){ document.getElementById("hidden").style.display = "block";}, 3000);
+</script>
 </body>
 </html>
