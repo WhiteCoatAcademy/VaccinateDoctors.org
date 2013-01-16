@@ -48,7 +48,7 @@
             text-align: center;
         }
         .jumbotron h1 {
-            font-size: 100px;
+            font-size: 90px;
             line-height: 1;
         }
         .jumbotron .lead {
@@ -149,9 +149,10 @@
     <!-- Make this a rotating experiment for some kinda' actions //-->
     <section id="home">
         <div class="jumbotron">
-            <h1>Flu Kills</h1>
-            <p class="lead">Each year, thousands of patients catch the flu from their doctors and nurses.</p><br><br>
-            <a class="btn btn-large btn-primary" href="#why-vaccinate"><i class="icon-user-md icon-white"></i> &nbsp; It's Time to Vaccinate Doctors &nbsp; <i class="icon-chevron-down icon-white"></i></a>
+            <h1>Don't Let Your Doctor Get You Sick</h1><br><br><br>
+            <p class="lead">Thousands of patients catch the flu from their doctors and nurses. Why?</p>
+            <p class="lead">Because flu shots aren't required for all medical staff.</p><br><br>
+            <a class="btn btn-large btn-primary" href="#why-vaccinate" id="learn-more"><i class="icon-user-md icon-white icon-large pull-left"></i> &nbsp; Learn More &nbsp; <i class="icon-chevron-down icon-white"></i></a>
         </div>
     </section>
 
@@ -309,7 +310,13 @@
     // Sexy smooth scroll
     $('.nav a').click(function(){
         $('html, body').animate({
-            scrollTop: $( $(this).attr('href') ).offset().top
+            scrollTop: $( $(this).attr('href') ).offset().top - 70
+        }, 500);
+        return false;
+    });
+    $('#learn-more').click(function(){
+        $('html, body').animate({
+            scrollTop: $( $(this).attr('href') ).offset().top - 70
         }, 500);
         return false;
     });
