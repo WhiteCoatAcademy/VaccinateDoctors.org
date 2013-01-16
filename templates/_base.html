@@ -290,9 +290,9 @@
                     <h3><i class="icon-phone icon-3x pull-left icon-border blue-icon"></i>Call Your Government</h3>
                     <p class="lead">The flu shot isn't a political issue &mdash; it's a <u>public health</u> issue! Ask your local and state representatives about requiring health care professionals to get the flu shot.</p>
                     {% if shortcode is sameas "" %}
-                    <p class="lead pull-right"><a href="http://www.congress.org/congressorg/directory/statedir.tt?lvl=state" onmousedown="_gaq.push(['_trackEvent','Advocate','FindRep','{{ target }}']);" target="_blank">Find your State Representative <i class="icon-share-alt"></i></a></p>
+                    <p class="lead pull-right"><a href="http://www.congress.org/congressorg/state/main/" onmousedown="_gaq.push(['_trackEvent','Advocate','FindRep','{{ target }}']);" target="_blank">Find your State Representative <i class="icon-share-alt"></i></a></p>
                     {% else %}
-                    <p class="lead pull-right"><a href="http://www.congress.org/congressorg/directory/statedir.tt?lvl=state&state={{ shortcode }}" onmousedown="_gaq.push(['_trackEvent','Advocate','FindRep','{{ target }}']);" target="_blank">Find your {{ target }} Representative <i class="icon-share-alt"></i></a></p>
+                    <p class="lead pull-right"><a href="http://www.congress.org/congressorg/state/main/?state={{ shortcode }}&view=stateofficials" onmousedown="_gaq.push(['_trackEvent','Advocate','FindRep','{{ target }}']);" target="_blank">Find your {{ target }} Representative <i class="icon-share-alt"></i></a></p>
                     {% endif %}
                 </div>
             </div><!-- /.row -->
@@ -311,7 +311,7 @@
     <hr>
 
     <div class="footer" style="font-size:small">
-        <span class="pull-right unstyled"><a href="https://www.facebook.com/VaccinateDocs" onmousedown="_gaq.push(['_trackEvent','Social','Facebook','Footer']);" target="_blank"><i class="icon-facebook-sign icon-large"></i> Facebook</a> | <a href="https://twitter.com/VaccinateDoctors" onmousedown="_gaq.push(['_trackEvent','Social','Twitter','Footer']);"  target="_blank"><i class="icon-twitter-sign icon-large"></i> Twitter</a></span>
+        <span class="pull-right unstyled"><a href="https://www.facebook.com/VaccinateDoctors" onmousedown="_gaq.push(['_trackEvent','Social','Facebook','Footer']);" target="_blank"><i class="icon-facebook-sign icon-large"></i> Facebook</a> | <a href="https://twitter.com/VaccinateDocs" onmousedown="_gaq.push(['_trackEvent','Social','Twitter','Footer']);"  target="_blank"><i class="icon-twitter-sign icon-large"></i> Twitter</a></span>
         <p>The <a href="//www.vaccinatedoctors.org" target="_blank">Vaccinate Doctors Initiative</a> is run by medical students as part of <a href="//www.clindesk.org/" target="_blank">ClinDesk, Inc.</a> &amp; <a href="//www.whitecoatacademy.org" target="_blank">White Coat Academy</a></p>
         <span class="pull-right"><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/us/deed.en_US" onmousedown="_gaq.push(['_trackEvent','License','Icon','Footer']);" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/us/80x15.png" /></a></span>
         <p>This site is licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/us/deed.en_US" onmousedown="_gaq.push(['_trackEvent','License','Link','Footer']);" target="_blank">CC BY SA 3.0</a> license.</p>
@@ -341,6 +341,11 @@
         });
     }(window.jQuery);
     $('.masthead').height($(".masthead").height());
+    {% if shortcode is not sameas "" %}
+    var expires = new Date();
+    expires.setTime(expires.getTime()+(365*24*60*60*1000));
+    document.cookie = "region={{ shortcode }};expires=" + expires.toGMTString() + ";path=/";
+    {% endif %}
 </script>
 </body>
 </html>
