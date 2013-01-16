@@ -61,11 +61,11 @@
                     tryRedirect();
                 } else {
                     _gaq.push(['_trackEvent','NonUS-G2', g2resp.countryCode]);
-                    console.warn('Non-US-G2');
+                    console.log('Non-US-G2');
                 }
             } else {
                 _gaq.push(['_trackEvent', 'XHR-G2-Fail', g2resp.statusCode]);
-                console.warn('G2-FAIL');
+                console.log('G2-FAIL');
             }
         }
         function altGeoLoc() {
@@ -93,13 +93,13 @@
                             } else {
                                 // NON-US
                                 _gaq.push(['_trackEvent','NonUS', resp.country_code]);
-                                console.warn('Non-US-G1');
+                                console.log('Non-US-G1');
                                 altGeoLoc();
                             }
                         } else {
                             // Alternate geolocation?
                             _gaq.push(['_trackEvent', 'XHRFail', xhr.status]);
-                            console.warn('G1-FAIL');
+                            console.log('G1-FAIL');
                             altGeoLoc();
                         }
                     }
@@ -109,7 +109,7 @@
         } catch (err) {
             // Log a more serious failure.
             _gaq.push(['_trackEvent','Error','Serious', err]);
-            console.warn(err);
+            console.log(err);
         }
         // If nothing happens after 2 seconds, call secondary GIP function.
         setTimeout(function(){ altGeoLoc(); }, 2000);
