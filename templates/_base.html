@@ -184,7 +184,7 @@
         <div class="row-fluid">
             <div class="span4">
                 <h4><i class="icon-hospital icon-large"></i> Reduce Hospitalizations</h4>
-                Each year, the flu causes <u>200,000 hospitalizations</u>, which can bankrupt or destroy families.
+                The flu causes <u>200,000 hospitalizations</u> each year. During peak flu times, emergency rooms are frequently overwhelmed.
             </div>
             <div class="span4">
                 <h4><i class="icon-ambulance icon-large"></i> Prevent Deaths</h4>
@@ -220,12 +220,17 @@
                 {% if shortcode is sameas "" %}
                 <p class="lead">Choose a hospital with a vaccine requirement</p>
                 {% else %}
-                <p class="lead">Choose a {{ target }} hospital with a vaccine requirement</p>
+                <p class="lead">Choose a {{ target }} hospital with a vaccine requirement for their staff</p>
                 {% endif %}
             </div><br><br>
             <div class="row-fluid">
-                <div class="span8 centered"><br><br>
-                    <p class="lead">Hospital list coming soon!</p>
+                <div class="span8 centered well well-small"><br><br>
+                    <h1><i class="icon-hospital icon-4x"></i></h1>
+                    {% if shortcode is sameas "" %}
+                    <p class="lead">List of the safest hospitals coming soon!</p>
+                    {% else %}
+                    <p class="lead">List of {{ target }}'s safest hospitals coming soon!</p>
+                    {% endif %}
                 </div>
                 <div class="span4">
                     <div class="centered">
