@@ -1,0 +1,100 @@
+{% extends "_base.html" %}
+{% block landing_page_code %}
+<script type="text/javascript">
+    if (!window.console) console = {log: function() {}};
+    // Check these + DC?
+    var region_to_url = {'AL':'alabama', 'AK':'alaska', 'AZ':'arizona', 'AR':'arkansas', 'CA':'california',
+        'CO':'colorado', 'CT':'connecticut', 'DE':'delaware', 'DC':'washington-dc', 'FL':'florida', 'GA':'georgia',
+        'HI':'hawaii', 'ID':'idaho', 'IL':'illinois', 'IN':'indiana', 'IA':'iowa', 'KS':'kansas', 'KT':'kentucky',
+        'LA':'louisiana', 'ME':'maine', 'MD':'maryland', 'MA':'massachusetts', 'MI':'michigan', 'MN':'minnesota',
+        'MS':'mississippi', 'MO':'missouri', 'MT':'montana', 'NE':'nebraska', 'NV':'nevada', 'NH':'new-hampshire',
+        'NJ':'new-jersey', 'NM':'new-mexico', 'NY':'new-york', 'NC':'north-carolina', 'ND':'north-dakota',
+        'OH':'ohio', 'OK':'oklahoma', 'OR':'oregon', 'PA':'pennsylvania', 'RI':'rhode-island',
+        'SC':'south-carolina', 'SD':'south-dakota', 'TN':'tennessee', 'TX':'texas', 'UT':'utah', 'VT':'vermont',
+        'VA':'virginia', 'WA':'washington', 'WV':'west-virginia', 'WI':'wisconsin', 'WY':'wyoming'};
+    // Try to redirect.
+    function tryRedirect() {
+        if (region != null) {
+            if (region_to_url.hasOwnProperty(region)) {
+                var expires = new Date();
+                expires.setTime(expires.getTime()+(365*24*60*60*1000));
+                document.cookie = "region=" + region + ";expires=" + expires.toGMTString();
+                window.location.pathname = "/" + region_to_url[region] + "/";
+            } else {
+                // Odd region.
+                _gaq.push(['_trackEvent', 'InvRegion', region]);
+                console.warn('Invalid region: ' + region)
+            }
+        }
+    }
+    // Alternate geolocation, for if primary fails
+    function secondary_gip(g2resp) {
+        if (g2resp.statusCode == "OK") {
+            if (g2resp.countryCode == "US") {
+                // Y U NO ANSI STANDARD 2 LETTER CODE?!?!?
+                // Loop over the existing region map (no sense in reversing, since only used once.)
+                var full_state = g2resp.regionName.toLowerCase();
+                for (var state_two_letter in region_to_url) {
+                    if (region_to_url[state_two_letter] == full_state) {
+                        region = state_two_letter;
+                        break;
+                    }
+                }
+                if (full_state == "district of columbia") { region = "DC"; }
+                tryRedirect();
+            } else {
+                _gaq.push(['_trackEvent','NonUS-G2', g2resp.countryCode]);
+                console.log('Non-US-G2');
+            }
+        } else {
+            _gaq.push(['_trackEvent', 'XHR-G2-Fail', g2resp.statusCode]);
+            console.log('G2-FAIL');
+        }
+    }
+    function altGeoLoc() {
+        var tag = document.createElement("script");
+        tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=secondary_gip";
+        document.getElementsByTagName("head")[0].appendChild(tag);
+    }
+    try {
+        var region = null;
+        var cIndex = document.cookie.indexOf("region=");
+        if (cIndex != -1) {
+            region = document.cookie.substring(cIndex + 7, cIndex + 9);
+            tryRedirect();
+        } else {
+            // Where are we?
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://freegeoip.net/json/", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var resp = JSON.parse(xhr.responseText);
+                        if (resp.country_code == "US") {
+                            region = resp.region_code;
+                            tryRedirect();
+                        } else {
+                            // NON-US
+                            _gaq.push(['_trackEvent','NonUS', resp.country_code]);
+                            console.log('Non-US-G1');
+                            altGeoLoc();
+                        }
+                    } else {
+                        // Alternate geolocation?
+                        _gaq.push(['_trackEvent', 'XHRFail', xhr.status]);
+                        console.log('G1-FAIL');
+                        altGeoLoc();
+                    }
+                }
+            };
+            xhr.send();
+        }
+    } catch (err) {
+        // Log a more serious failure.
+        _gaq.push(['_trackEvent','Error','Serious', err]);
+        console.log(err);
+    }
+    // If nothing happens after 2 seconds, call secondary GIP function.
+    setTimeout(function(){ altGeoLoc(); }, 2000);
+</script>
+{% endblock %}
