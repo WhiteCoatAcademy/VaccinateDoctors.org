@@ -25,7 +25,7 @@
             padding-bottom: 60px;
         }
         /* Hack, fixed in 2.3? */
-        @media (max-width: 480px) {
+        @media (max-width: 767px) {
             body {padding-left:0;padding-right: 0}
         }
         .navbar.affix {
@@ -86,6 +86,9 @@
         .navbar .navbar-inner {
             padding: 0;
         }
+        .navbar .navbar-inner h4 {
+            height:25px;
+        }
         .navbar .nav {
             margin: 0;
             display: table;
@@ -128,14 +131,19 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/s/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/s/ico/apple-touch-icon-57-precomposed.png"> #}
 </head>
-{# <img src="{{ static('states/' + shortcode + '.png') }}" style="float:left"> #}
 <body data-spy="scroll" data-offset="100" data-target=".navbar-inner">
 <section id="top"></section> <!-- Spacer for navbar highlights //-->
 <div class="container">
     <div class="masthead">
-        <h3 class="muted">{{ target }}, Vaccinate Your Doctors!</h3>
         <div class="navbar">
             <div class="navbar-inner">
+                {% if shortcode is sameas "" %}
+                <h4 class="centered muted">{{ target }}, Vaccinate Your Doctors!</h4>
+                {% elif shortcode is sameas "DC" %}
+                <h4 class="centered muted">Washington DC, Vaccinate Your Doctors!</h4>
+                {% else %}
+                <h4 class="centered muted"><img src="{{ static('states/' + shortcode.lower() + '.png') }}"> {{ target }}, Vaccinate Your Doctors!</h4>
+                {% endif %}
                 <div class="container">
                     <ul class="nav">
                         <li class="active"><a href="#top">The Problem</a></li>
@@ -362,13 +370,13 @@
     // Sexy smooth scroll
     $('.nav a').click(function(){
         $('html, body').animate({
-            scrollTop: $( $(this).attr('href') ).offset().top - 70
+            scrollTop: $( $(this).attr('href') ).offset().top - 99
         }, 500);
         return false;
     });
     $('#learn-more').click(function(){
         $('html, body').animate({
-            scrollTop: $( $(this).attr('href') ).offset().top - 70
+            scrollTop: $( $(this).attr('href') ).offset().top - 99
         }, 500);
         return false;
     });
