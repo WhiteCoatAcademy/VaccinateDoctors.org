@@ -69,10 +69,10 @@ targets = states.keys() + groups
 def localized_branding(target):
     if target in groups:
         # Targeting a specific group (moms, etc.)
-        return render_template('target_group.html', target=target.replace('-', ' ').title(), shortcode="")
+        return render_template('_base.html', target=target.replace('-', ' ').title(), shortcode="")
     else:
         # Targeting a State
-        return render_template('target_state.html', target=target.replace('-', ' ').title(), shortcode=states[target])
+        return render_template('_base.html', target=target.replace('-', ' ').title(), shortcode=states[target])
 
 
 ######
