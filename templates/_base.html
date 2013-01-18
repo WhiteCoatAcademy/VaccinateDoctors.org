@@ -170,8 +170,8 @@
                     <!-- Flickr CC BY NC SA: http://www.flickr.com/photos/seandreilinger/289155189/ //-->
                     <img class="img-circle" src="{{ static('CC_BY_NC_SA-flickr_seandreilinger.jpg') }}" alt="Newborns can be killed by the flu virus">
                     <h2>Newborns</h2>
-                    <p>Catching the flu in the hospital can kill newborns &mdash; That's one reason why
-                        <a href="http://www.immunizationforwomen.org/" target="_blank">Ob-Gyns take the flu very seriously</a>.</a> </p>
+                    <p>Catching the flu in the hospital can kill infants. That's one reason why Ob-Gyns and midwives take the flu very seriously. </p>
+                    {# <a href="http://www.immunizationforwomen.org/" target="_blank"> #}
                 </div><!-- /.span4 -->
                 <div class="span4">
                     <!-- Flickr CC BY SA: http://www.flickr.com/photos/manachar/553741993/ //-->
@@ -198,11 +198,13 @@
         <div class="row-fluid">
             <div class="span4">
                 <h4><i class="icon-hospital icon-large"></i> Reduce Hospitalizations</h4>
-                The flu causes <u>200,000 hospitalizations</u> each year. During peak flu times, emergency rooms are frequently overwhelmed.
+                The flu causes
+                <a href="#" rel="popover" data-placement="top" title="Shots Decrease Hospital Visits" data-content="This number comes from a 2004 report in the Journal of the American Medical Association (JAMA), showing the flu causes an average of 226,054 hospitalizations every year.">225,000 hospitalizations</a>
+                each year. During peak flu times, emergency rooms are frequently overwhelmed.
             </div>
             <div class="span4">
                 <h4><i class="icon-ambulance icon-large"></i> Prevent Deaths</h4>
-                The flu causes <u>36,000 deaths</u> each year, all of which are preventable.  Influenza is the sixth leading cause of death among US adults.
+                The flu causes <a href="#" rel="popover" data-placement="top" title="Flu Shots Prevent Patient Deaths" data-content="This number comes from a 2008 report in Critical Care Medicine.">41,000 deaths</a> every year, all of which are preventable.  Influenza is the sixth leading cause of death among US adults.
             </div>
             <div class="span4">
                 <h4><i class="icon-group icon-large"></i> Herd Immunity</h4>
@@ -212,15 +214,19 @@
         <div class="row-fluid">
             <div class="span4">
                 <h4><i class="icon-money icon-large"></i> Saves Medical Costs</h4>
-                With rising healthcare costs, requiring flu vaccines for doctors &amp; nurses is a great way to reduce expenses.
+                Mandating the flu shot for health care workers can save up to
+                <a href="#" rel="popover" data-placement="top" title="Flu Shots Save Money" data-content="This number comes from a 2002 outbreak that overwhelmed a community hospital and had a total cost of $34,179.">$3,798 per patient</a>
+                during a bad flu season &mdash; like the one this year.
             </div>
             <div class="span4">
                 <h4><i class="icon-ok-circle icon-large"></i> Supported by Key Groups</h4>
-                Requiring flu shots for doctors &amp; nurses is supported by <u>every major medical association</u> and hundreds of hospitals.
+                Requiring flu shots for doctors &amp; nurses is supported by
+                <a href="#" rel="popover" data-placement="top" title="Wide Support for a Requirement" data-content="There are too many supporters to list! Scroll to the bottom of the page to see them all.">every major medical association</a>
+                and hundreds of hospitals.
             </div>
             <div class="span4">
                 <h4><i class="icon-user-md icon-large"></i> Other Vaccines</h4>
-                We already require many other vaccines for doctors &amp; nurses, including measles, mumps, rubella, and hepatitis B. It's time to include the flu.
+                We already require many shots for doctors &amp; nurses, including measles, mumps, rubella, and hepatitis B. It's time to include the flu.
             </div>
         </div>
     </div>
@@ -311,6 +317,36 @@
 
     <hr>
 
+    <div class="marketing">
+        <div class="centered">
+            <h2>Other Resources</h2>
+        </div><br><br>
+        <div class="row-fluid">
+            <div class="span5 well well-small">
+                <p class="lead centered">Supporters of Required Flu Shots<br>for Health Care Workers</p>
+                <ul>
+                    <li>American Academy of Pediatrics (AAP)</li>
+                    <li>American Academy of Family Physicians (AAFP)</li>
+                    <li>American College of Physicians (ACP)</li>
+                    <li>American Hospital Association (AHA)</li>
+                    <li>American Pharmacists Association (APhA)</li>
+                    <li>American Public Health Association (APHA)</li>
+                    <li>Infectious Diseases Society of America (IDSA)</li>
+                    <li>National Business Group on Health</li>
+                    <li>National Foundation for Infectious Diseases (NFID)</li>
+                    <li>National Patient Safety Foundation (NPSF)</li>
+                </ul>
+            </div>
+            <div class="span7">
+                <div class="centered"><br><br><br>
+                    <p class="lead">More resources coming soon.</p>
+                </div>
+            </div><!-- /.span4 -->
+        </div><!-- /.row -->
+    </div>
+
+    <hr>
+
     <div class="footer" style="font-size:small">
         <span class="pull-right unstyled"><a href="https://www.facebook.com/VaccinateDoctors" onmousedown="_gaq.push(['_trackEvent','Social','Facebook','Footer']);" target="_blank"><i class="icon-facebook-sign icon-large"></i> Facebook</a> | <a href="https://twitter.com/VaccinateDocs" onmousedown="_gaq.push(['_trackEvent','Social','Twitter','Footer']);"  target="_blank"><i class="icon-twitter-sign icon-large"></i> Twitter</a></span>
         <p>The <a href="//www.vaccinatedoctors.org" target="_blank">Vaccinate Doctors Initiative</a> is run by medical students as part of <a href="//www.clindesk.org/" target="_blank">ClinDesk, Inc.</a> &amp; <a href="//www.whitecoatacademy.org" target="_blank">White Coat Academy</a></p>
@@ -342,6 +378,7 @@
         });
     }(window.jQuery);
     $('.masthead').height($(".masthead").height());
+    $("a[rel=popover]").popover().click(function(e) { e.preventDefault() });
     {% if shortcode is not sameas "" %}
     var expires = new Date();
     expires.setTime(expires.getTime()+(365*24*60*60*1000));
