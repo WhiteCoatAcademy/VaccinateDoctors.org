@@ -52,7 +52,7 @@ def page_index():
 # TODO: + US Territories?
 # This is needed for some Google Flu Trends and other shortcuts.
 states = {'alabama':'AL', 'alaska':'AK', 'arizona':'AZ', 'arkansas':'AR', 'california':'CA', 'colorado':'CO',
-          'connecticut':'CT', 'dc':'DC', 'delaware':'DE', 'florida':'FL', 'georgia':'GA', 'hawaii':'HI',
+          'connecticut':'CT', 'washington-dc':'DC', 'delaware':'DE', 'florida':'FL', 'georgia':'GA', 'hawaii':'HI',
           'idaho':'ID', 'illinois':'IL', 'indiana':'IN', 'iowa':'IA', 'kansas':'KS', 'kentucky':'KT', 'louisiana':'LA',
           'maine':'ME', 'maryland':'MD', 'massachusetts':'MA', 'michigan':'MI', 'minnesota':'MN', 'mississippi':'MS',
           'missouri':'MO', 'montana':'MT', 'nebraska':'NE', 'nevada':'NV', 'new-hampshire':'NH', 'new-jersey':'NJ',
