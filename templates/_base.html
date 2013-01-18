@@ -23,6 +23,10 @@
             padding-top: 20px;
             padding-bottom: 60px;
         }
+        /* Hack, fixed in 2.3? */
+        @media (max-width: 480px) {
+            body {padding-left:0;padding-right: 0}
+        }
         .navbar.affix {
             position: fixed;
             top: 0;
@@ -42,7 +46,7 @@
         .centered {
             text-align: center;
         }
-            /* Main marketing message and sign up button */
+        /* Main marketing message and sign up button */
         .jumbotron {
             margin: 60px 0;
             text-align: center;
@@ -59,16 +63,14 @@
             font-size: 21px;
             padding: 14px 24px;
         }
-
-            /* Supporting marketing content */
+        /* Supporting marketing content */
         .marketing {
             margin: -20px 0;
         }
         .marketing p + h4 {
             margin-top: 28px;
         }
-
-            /* Center align the text within the three columns below the carousel */
+        /* Center align the text within the three columns below the carousel */
         .marketing .span4 {
             text-align: center;
         }
@@ -79,8 +81,7 @@
             margin-left: 10px;
             margin-right: 10px;
         }
-
-            /* Customize the navbar links to be fill the entire space of the .navbar */
+        /* Customize the navbar links to be fill the entire space of the .navbar */
         .navbar .navbar-inner {
             padding: 0;
         }
@@ -136,7 +137,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav">
-                        <li class="active"><a href="#top">Home</a></li>
+                        <li class="active"><a href="#top">The Problem</a></li>
                         <li><a href="#why-vaccinate">Why Vaccinate?</a></li>
                         <li><a href="#safest-hospitals">Safest Hospitals</a></li>
                         <li><a href="#get-involved">Get Involved</a></li>
