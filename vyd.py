@@ -91,6 +91,12 @@ def robots():
     return send_from_directory(os.path.join(app.root_path, 's'),
                                'robots.txt', mimetype='text/plain')
 
+# Sitemap, since we're hard to index.
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(os.path.join(app.root_path, 's'),
+                               'sitemap.xml', mimetype='application/xml')
+
 #@app.route('/openid')
 #def openid():
 #    return send_from_directory(os.path.join(app.root_path, 's'),

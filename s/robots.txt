@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+
+Sitemap: http://www.vaccinateyourdoctors.org/sitemap.xml
+
