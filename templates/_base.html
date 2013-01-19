@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og:http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
     <title>{{ target }} &middot; Vaccinate Your Doctors &amp; Nurses</title>
@@ -7,6 +7,16 @@
     <meta name="description" content="Lazy doctors put {{ target }} at risk. We need to require flu shots for doctors &amp; nurses.">
     <meta name="author" content="Nick Semenkovich (@semenko) http://web.mit.edu/semenko/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta property="og:type" content="website">
+    {# We lump all the non-region targets e.g. Moms/Patients/etc. into one. Fix that. #}
+    {%- if shortcode is sameas "" -%}
+    <meta property="og:title" content="You're at risk from lazy doctors and nurses who get their patients sick.">
+    <meta property="og:url" content="http://www.VaccinateYourDoctors.org/">
+    {% else %}
+    <meta property="og:title" content="{{ target }} is at risk from lazy doctors and nurses who get their patients sick.">
+    <meta property="og:url" content="http://www.VaccinateYourDoctors.org/{{target}}/">
+    {% endif %}
+    <meta property="og:image" content="http:{{ static('CC_BY_NC-flickr_ericparker.jpg') }}">
     <script type="text/javascript">
         var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-32988270-4']);
         _gaq.push(['_setSiteSpeedSampleRate', 100]); _gaq.push(['_trackPageview']);
