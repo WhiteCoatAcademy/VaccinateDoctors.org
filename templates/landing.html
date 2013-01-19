@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% block landing_page_code %}
 <script type="text/javascript">
-    if (!window.console) console = {log: function() {}};
+    if (!window.console) { console = {log: function() {}}; }
     // Check these + DC?
     var region_to_url = {'AL':'alabama', 'AK':'alaska', 'AZ':'arizona', 'AR':'arkansas', 'CA':'california',
         'CO':'colorado', 'CT':'connecticut', 'DE':'delaware', 'DC':'washington-dc', 'FL':'florida', 'GA':'georgia',
@@ -23,7 +23,7 @@
             } else {
                 // Odd region.
                 _gaq.push(['_trackEvent', 'InvRegion', region]);
-                console.warn('Invalid region: ' + region)
+                console.warn('Invalid region: ' + region);
             }
         }
     }
