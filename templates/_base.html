@@ -24,10 +24,6 @@
             padding-top: 20px;
             padding-bottom: 60px;
         }
-        /* Hack, fixed in 2.3? */
-        @media (max-width: 767px) {
-            body {padding-left:0;padding-right: 0}
-        }
         .navbar.affix {
             position: fixed;
             top: 0;
@@ -119,6 +115,15 @@
         .unstyled a:hover{
             color: #000;
             text-decoration: none;
+        }
+        /* Hack, fixed in 2.3? */
+        @media (max-width: 767px) {
+            body { padding-left:0; padding-right: 0;}
+        }
+        @media (max-width: 480px) {
+            .jumbotron h1 {
+                font-size: 60px;
+            }
         }
     </style>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
