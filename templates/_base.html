@@ -149,8 +149,8 @@
 <body data-spy="scroll" data-offset="120" data-target=".navbar-inner">
 <section id="top"></section> <!-- Spacer for navbar highlights //-->
 <div class="container">
-    <div class="masthead">
-        <div class="navbar">
+    <div class="masthead" id="themasthead">
+        <div class="navbar" id="thenavbar">
             <div class="navbar-inner">
                 {% if shortcode is sameas "" %}
                 <h4 class="centered muted">{{ target }}, Vaccinate Your Doctors!</h4>
@@ -409,6 +409,9 @@
             $('.navbar').affix({ offset: $('.navbar').position() });
             $('.masthead').height($(".masthead").height());
             $("a[rel=popover]").popover().click(function(e) { e.preventDefault(); });
+            // Evil hack to resize navbar because something is broken.
+            $(window).bind("resize", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
+            $(window).bind("scroll", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
         });
     }(window.jQuery);
 </script>
