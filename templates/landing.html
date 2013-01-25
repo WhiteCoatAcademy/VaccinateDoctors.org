@@ -56,7 +56,7 @@
     // Call primary Geolocation service
     function primaryGeoLoc() {
         var tag = document.createElement("script");
-        tag.src = "xhttp://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=primary_gip";
+        tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=primary_gip";
         document.getElementsByTagName("head")[0].appendChild(tag);
     }
     // Secondary geolocation callback.
@@ -76,7 +76,7 @@
     }
     function secondaryGeoLoc() {
         var tag = document.createElement("script");
-        tag.src = "xhttp://freegeoip.net/json/?callback=secondary_gip";
+        tag.src = "http://freegeoip.net/json/?callback=secondary_gip";
         document.getElementsByTagName("head")[0].appendChild(tag);
     }
     // On landing, read cookie and redirect, otherwise geolocate.
