@@ -415,8 +415,8 @@
             $('.masthead').height($(".masthead").height());
             $("a[rel=popover]").popover().click(function(e) { e.preventDefault(); });
             // Evil hack to resize navbar because something is broken.
-            $(window).bind("resize", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
-            $(window).bind("scroll", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
+            $(window).bind("resize", function(){ $('#thenavbar').css("width",$('#themasthead').width()); });
+            $(window).bind("scroll", function(){ $('#thenavbar').css("width",$('#themasthead').width()); });
         });
         $(window).load(function(){
           (window.frames || document.frames)["flutrends"].window.location = "//www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}";
