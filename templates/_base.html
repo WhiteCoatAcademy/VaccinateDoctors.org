@@ -287,7 +287,7 @@
                         {% else %}
                         <p class="lead">{{ target }}'s Current Flu Cases</p>
                         {% endif %}
-                        <iframe width="300" height="250" src="http://www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}" frameborder="0"></iframe>
+                        <iframe width="300" height="250" name="flutrends" frameborder="0"></iframe>
                     </div>
                 </div><!-- /.span4 -->
             </div><!-- /.row -->
@@ -417,6 +417,9 @@
             // Evil hack to resize navbar because something is broken.
             $(window).bind("resize", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
             $(window).bind("scroll", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
+        });
+        $(document).ready(function(){
+          (window.frames || document.frames)["flutrends"].window.location = "//www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}";
         });
     }(window.jQuery);
 </script>
