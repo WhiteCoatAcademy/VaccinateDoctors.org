@@ -2,6 +2,7 @@
 {% block landing_page_code %}
 <script type="text/javascript">
     var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-32988270-4']);
+    window.onerror = function(m, f, l) { var err = [f, l, m].join(' : '); _gaq.push(['_trackEvent', 'Errors', 'App', err, null, true]); };
     if (!window.console) { console = {log: function() {}}; }
     var region_to_url = {'AL':'alabama', 'AK':'alaska', 'AZ':'arizona', 'AR':'arkansas', 'CA':'california',
         'CO':'colorado', 'CT':'connecticut', 'DE':'delaware', 'DC':'washington-dc', 'FL':'florida', 'GA':'georgia',
