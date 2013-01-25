@@ -418,7 +418,7 @@
             $(window).bind("resize", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
             $(window).bind("scroll", function(){ $('#thenavbar').css("width",$('#themasthead').width()); })
         });
-        $(document).ready(function(){
+        $(window).load(function(){
           (window.frames || document.frames)["flutrends"].window.location = "//www.google.org/flutrends/embed/en_us/us/#US-{{ shortcode }}";
         });
     }(window.jQuery);
