@@ -161,11 +161,11 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
 
     # TODO: Make these much higher when we have good versioning set up.
     cache_times = {'.png': '604800',  # 1 week
-                   '.jpg': '604800',
+                   '.jpg': '2628000', # 1 month
                    '.js': '86400',  # 1 day
-                   '.css': '86400',
+                   '.css': '86400',# 1 day
                    '.html': '14400', # 4 hours
-                   '.ico': '604800',
+                   '.ico': '604800', # 1 week
                    '_DEFAULT_': '86400'
                    }
     def get_headers(filename, extn):
