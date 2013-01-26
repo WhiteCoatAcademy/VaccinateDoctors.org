@@ -84,6 +84,7 @@ def main():
         print('*** Freeze complete!')
         time.sleep(1)
 
+
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
             #### Connect to S3
@@ -160,19 +161,20 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
             upload_pending.add(filename)
 
     # TODO: Make these much higher when we have good versioning set up.
-    cache_times = {'.png': '604800',  # 1 week
-                   '.jpg': '2628000', # 1 month
-                   '.js': '86400',  # 1 day
-                   '.css': '86400',# 1 day
-                   '.html': '14400', # 4 hours
-                   '.ico': '604800', # 1 week
+    cache_times = {'.png': '604800',   # 1 week
+                   '.jpg': '2628000',  # 1 month
+                   '.js': '86400',     # 1 day
+                   '.css': '86400',    # 1 day
+                   '.html': '14400',   # 4 hours
+                   '.ico': '604800',   # 1 week
                    '_DEFAULT_': '86400'
                    }
+
     def get_headers(filename, extn):
         headers = {}
         exp_seconds = cache_times.get(extn, cache_times['_DEFAULT_'])
 
-        headers['Cache-control'] = 'public, max-age=' + exp_seconds # TODO: fix whenever S3/CloudFront gzip doesn't suck
+        headers['Cache-control'] = 'public, max-age=' + exp_seconds
 
         # Security-related headers
         if extn in {'.html'}:
@@ -186,10 +188,10 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
         if filename.endswith('host-meta') and extn is "":
             headers['Content-Type'] = 'application/host-meta; charset=UTF-8'
         return headers
-        
+
     # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
     # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
-    # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.    
+    # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.
     if len(upload_pending) > 0:
         print("Uploading: %s" % str(len(upload_pending)))
         for upload_file in upload_pending:
@@ -209,7 +211,6 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
                 gz_fh.close()
                 gz_buffer.seek(0)
                 kgz.set_contents_from_file(gz_buffer, headers={'Content-Encoding': 'gzip', 'Content-Type': k.content_type})
-
 
     # Delete orphans, maybe.
     if len(delete_pending) > 0 and not no_delete:
