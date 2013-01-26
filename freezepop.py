@@ -64,7 +64,7 @@ def main():
         #    ./vyd_frozen/
         if not args.no_freeze:
             print("Freezing Vaccinate Your Doctors app ...")
-            print("*** Look for errors here *** \n")
+            print("*** Look for errors here ***")
             vyd = imp.load_source('vyd', 'vyd.py')
             frozen_vyd = Freezer(vyd.app)
 
@@ -84,6 +84,11 @@ def main():
         print('*** Freeze complete!')
         time.sleep(1)
 
+        print('*** Minifying results, including JS and CSS.')
+        subprocess.call(['java', '-jar', 'htmlcompressor-1.5.3.jar', '--recursive',
+                         '--compress-js', '--compress-css',                 # Compress CSS and JS
+                         '--remove-script-attr', '--remove-style-attr',     # Remove unnecessary attributes
+                         'vyd_frozen/', '-o', 'vyd_frozen/'])
 
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
@@ -95,7 +100,7 @@ def main():
             deploy_to_s3(conn, 'vyd_frozen', 'prod.vaccinateyourdoctors.org', args.no_delete, args.overwrite_all)
             time.sleep(1)
 
-        print('All done!')
+        print('\nAll done!')
     else:
         print('Doing nothing. Type -h for help.')
 
