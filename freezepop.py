@@ -166,7 +166,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
             upload_pending.add(filename)
 
     # TODO: Make these much higher when we have good versioning set up.
-    cache_times = {'.png': '604800',   # 1 week
+    cache_times = {'.png': '2628000',  # 1 month
                    '.jpg': '2628000',  # 1 month
                    '.js': '86400',     # 1 day
                    '.css': '86400',    # 1 day
