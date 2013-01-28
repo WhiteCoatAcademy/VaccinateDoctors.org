@@ -170,7 +170,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
                    '.jpg': '2628000',  # 1 month
                    '.js': '86400',     # 1 day
                    '.css': '86400',    # 1 day
-                   '.html': '14400',   # 4 hours
+                   '.html': '43200',   # 12 hours
                    '.ico': '604800',   # 1 week
                    '_DEFAULT_': '86400'
                    }
