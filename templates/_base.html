@@ -6,16 +6,16 @@
     <title>{{ target }} &middot; Vaccinate Your Doctors &amp; Nurses</title>
     {% block landing_page_code %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lazy doctors put {{ target }} at risk. We need to require flu shots for doctors &amp; nurses.">
+    <meta name="description" content="Forgetful doctors put {{ target }} at risk. We need to require flu shots for doctors &amp; nurses.">
     <meta name="author" content="Nick Semenkovich (@semenko) http://web.mit.edu/semenko/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta property="og:type" content="website">
     {# We lump all the non-region targets e.g. Moms/Patients/etc. into one. Fix that. #}
     {%- if shortcode is sameas "" -%}
-    <meta property="og:title" content="You're at risk from lazy doctors and nurses who get their patients sick.">
+    <meta property="og:title" content="You're at risk from forgetful doctors and nurses who get their patients sick.">
     <meta property="og:url" content="http://www.VaccinateYourDoctors.org/">
     {% else %}
-    <meta property="og:title" content="{{ target }} is at risk from lazy doctors and nurses who get their patients sick.">
+    <meta property="og:title" content="{{ target }} is at risk from forgetful doctors and nurses who get their patients sick.">
     <meta property="og:url" content="http://www.VaccinateYourDoctors.org/{{target}}/">
     {% endif %}
     <meta property="og:image" content="http:{{ static('CC_BY_NC-flickr_ericparker.jpg') }}">
@@ -177,7 +177,7 @@
         <div class="jumbotron">
             <h1>Is Your Doctor Coughing?</h1><br><br><br>
             <p class="lead">Thousands of patients catch the flu from their doctors &amp; nurses. Why?</p>
-            <p class="lead">Because some lazy doctors don't get their flu shots.</p><br><br>
+            <p class="lead">Because some forgetful doctors don't get their flu shots.</p><br><br>
             <p class="lead">We require many other shots for health care workers &mdash; It's time we include the flu, too.</p><br><br>
             <a class="btn btn-large btn-primary" href="#why-vaccinate" id="learn-more"><i class="icon-user-md icon-white icon-large pull-left"></i> &nbsp; Why Does the Flu Matter? &nbsp;<i class="icon-circle-arrow-down icon-white icon-large pull-right"></i></a>
         </div>
