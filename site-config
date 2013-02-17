@@ -1,0 +1,19 @@
+[aws_key]
+aws_key_id = AKIAJIX5TRGBF466JRGQ
+
+[prod_site]
+s3_bucket = prod.vaccinatedoctors.org
+cloudfront_endpoint = endpoint.cloudfront.net
+
+[staging_site]
+s3_bucket = staging.vaccinatedoctors.org
+
+[cache_settings]
+png = 2628000
+jpg = 2628000
+js = 86400
+css = 86400
+html = 28800
+ico = 604800
+txt = 604800
+default = 86400

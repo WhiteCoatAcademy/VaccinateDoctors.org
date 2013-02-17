@@ -4,3 +4,5 @@
 .awskey
 .idea
 app_frozen/
+freezepop.py
+.bin

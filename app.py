@@ -112,7 +112,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5005, debug=True)
 else:
     # We're probably being Frozen. Cool.
-    app.config['FREEZER_DESTINATION'] = './vd_frozen/'
+    app.config['FREEZER_DESTINATION'] = './app_frozen/'
 
     app.config['prod'] = True
     # We don't really support SSL given Cloudfront, but ...
