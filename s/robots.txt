@@ -1,5 +1,5 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://www.vaccinateyourdoctors.org/sitemap.xml
+Sitemap: http://www.vaccinatedoctors.org/sitemap.xml
 

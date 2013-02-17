@@ -23,7 +23,7 @@ from hashlib import md5
 
 def main():
     """
-    Freeze Vaccinate Your Doctors and resync S3 staging/prod stores.
+    Freeze Vaccinate Doctors and resync S3 staging/prod stores.
     """
 
     parser = argparse.ArgumentParser(description='The Vaccinate Your Doctors S3/AWS management script.')
@@ -50,9 +50,9 @@ def main():
 
     args = parser.parse_args()
 
-    # Special IAM user: vyd-deploy-bot
+    # Special IAM user: vd-deploy-bot
     with open('.awskey', 'r') as secret_key:
-        os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAJB3TQFWKVRVAV46Q'
+        os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAJIX5TRGBF466JRGQ'
         os.environ['AWS_SECRET_ACCESS_KEY'] = secret_key.readline()
 
     if args.deploy or args.freeze_only:
@@ -61,22 +61,22 @@ def main():
 
         # Freeze Vaccinate Your Doctors
         # Per internal app configs, these make "frozen" static copies of these apps in:
-        #    ./vyd_frozen/
+        #    ./app_frozen/
         if not args.no_freeze:
             print("Freezing Vaccinate Your Doctors app ...")
             print("*** Look for errors here ***")
-            vyd = imp.load_source('vyd', 'vyd.py')
-            frozen_vyd = Freezer(vyd.app)
+            vd = imp.load_source('vd', 'vd.py')
+            frozen_vd = Freezer(vd.app)
 
             # Targets required for URL generators for Flask static.
-            targets = vyd.targets
+            targets = vd.targets
 
-            @frozen_vyd.register_generator
+            @frozen_vd.register_generator
             def localized_branding():
                 for target in targets:
                     yield {'target': target}
 
-            frozen_vyd.freeze()
+            frozen_vd.freeze()
             print("")
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
@@ -88,7 +88,7 @@ def main():
         subprocess.call(['java', '-jar', 'htmlcompressor-1.5.3.jar', '--recursive',
                          '--compress-js', '--compress-css',                 # Compress CSS and JS
                          '--remove-script-attr', '--remove-style-attr',     # Remove unnecessary attributes
-                         'vyd_frozen/', '-o', 'vyd_frozen/'])
+                         'app_frozen/', '-o', 'app_frozen/'])
 
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
@@ -97,7 +97,7 @@ def main():
             conn = S3Connection()
 
             # Deploy: (conn, frozen_path, remote_bucket)
-            deploy_to_s3(conn, 'vyd_frozen', 'prod.vaccinateyourdoctors.org', args.no_delete, args.overwrite_all)
+            deploy_to_s3(conn, 'app_frozen', 'prod.vaccinatedoctors.org', args.no_delete, args.overwrite_all)
             time.sleep(1)
 
         print('\nAll done!')
