@@ -1,12 +1,8 @@
-[aws_key]
+[general]
 aws_key_id = AKIAJIX5TRGBF466JRGQ
-
-[prod_site]
-s3_bucket = prod.vaccinatedoctors.org
+prod_s3_bucket = prod.vaccinatedoctors.org
+staging_s3_bucket = staging.vaccinatedoctors.org
 cloudfront_endpoint = endpoint.cloudfront.net
-
-[staging_site]
-s3_bucket = staging.vaccinatedoctors.org
 
 [cache_settings]
 png = 2628000
