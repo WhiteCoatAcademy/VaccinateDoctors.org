@@ -4,11 +4,11 @@ prod_s3_bucket = prod.vaccinatedoctors.org
 staging_s3_bucket = prod.vaccinatedoctors.org
 
 [cache_settings]
-png = 2628000
-jpg = 2628000
-js = 86400
-css = 86400
-html = 28800
-ico = 604800
-txt = 604800
+png = 2592000
+jpg = 2592000
+js = 2592000
+css = 2592000
+html = 2592000
+ico = 2592000
+txt = 2592000
 default = 86400
