@@ -28,8 +28,29 @@
             }
         }
     }
-    // Primary geolocation callback
-    function primary_gip(resp) {
+    // (Primary) freegeoip geolocation callback.
+    function free_gip(resp) {
+        try {
+            if (resp.country_code == "US") {
+                region = resp.region_code;
+                tryRedirect();
+            } else {
+                _gaq.push(['_trackEvent','NonUS-G2', resp.countryCode]);
+                console.log('Non-US-G2');
+            }
+        } catch (err) {
+            _gaq.push(['_trackEvent', 'G2-Fail', resp]);
+            ipinfoGeoLoc(); // Trigger alternative geolocation
+            console.log('G2-FAIL');
+        }
+    }
+    function freegeoipGeoLoc() {
+        var tag = document.createElement("script");
+        tag.src = "http://freegeoip.net/json/?callback=free_gip";
+        document.getElementsByTagName("head")[0].appendChild(tag);
+    }
+    // Secondary geolocation callback
+    function ipinfo_gip(resp) {
         if (resp.statusCode == "OK") {
             if (resp.countryCode == "US") {
                 // Y U NO ANSI STANDARD 2 LETTER CODE?!?!?
@@ -49,34 +70,13 @@
             }
         } else {
             _gaq.push(['_trackEvent', 'G1-Fail', resp.statusCode]);
-            secondaryGeoLoc();
             console.log('G1-FAIL');
         }
     }
-    // Call primary Geolocation service
-    function primaryGeoLoc() {
+    // Call secondary Geolocation service
+    function ipinfoGeoLoc() {
         var tag = document.createElement("script");
-        tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=primary_gip";
-        document.getElementsByTagName("head")[0].appendChild(tag);
-    }
-    // Secondary geolocation callback.
-    function secondary_gip(resp) {
-        try {
-            if (resp.country_code == "US") {
-                region = resp.region_code;
-                tryRedirect();
-            } else {
-                _gaq.push(['_trackEvent','NonUS-G2', resp.countryCode]);
-                console.log('Non-US-G2');
-            }
-        } catch (err) {
-            _gaq.push(['_trackEvent', 'G2-Fail', resp]);
-            console.log('G2-FAIL');
-        }
-    }
-    function secondaryGeoLoc() {
-        var tag = document.createElement("script");
-        tag.src = "http://freegeoip.net/json/?callback=secondary_gip";
+        tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=ipinfo_gip";
         document.getElementsByTagName("head")[0].appendChild(tag);
     }
     // On landing, read cookie and redirect, otherwise geolocate.
@@ -88,9 +88,9 @@
         tryRedirect();
     } else {
         // Call Primary Geolocation
-        primaryGeoLoc();
+        freegeoipGeoLoc();
     }
     // If nothing happens after 3 seconds, start secondary geolocation.
-    setTimeout(function(){ secondaryGeoLoc(); _gaq.push(['_trackEvent', 'GeoLocTime', 'G1-Timeout']); }, 3000);
+    setTimeout(function(){ ipinfoGeoLoc(); _gaq.push(['_trackEvent', 'GeoLocTime', 'G1-Timeout']); }, 3000);
 </script>
 {% endblock %}
