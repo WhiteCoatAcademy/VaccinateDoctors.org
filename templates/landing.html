@@ -46,7 +46,7 @@
     }
     function freegeoipGeoLoc() {
         var tag = document.createElement("script");
-        tag.src = "http://freegeoip.net/json/?callback=free_gip";
+        tag.src = "//freegeoip.net/json/?callback=free_gip";
         document.getElementsByTagName("head")[0].appendChild(tag);
     }
     // Secondary geolocation callback
@@ -76,7 +76,7 @@
     // Call secondary Geolocation service
     function ipinfoGeoLoc() {
         var tag = document.createElement("script");
-        tag.src = "http://api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=ipinfo_gip";
+        tag.src = "//api.ipinfodb.com/v3/ip-city?key=2afb08c297f579b1083e7535bb7ecd8c0985150994271e4ee7cf06078c61bb79&format=json&callback=ipinfo_gip";
         document.getElementsByTagName("head")[0].appendChild(tag);
     }
     // On landing, read cookie and redirect, otherwise geolocate.
