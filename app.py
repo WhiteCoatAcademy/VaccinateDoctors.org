@@ -115,5 +115,4 @@ else:
     app.config['FREEZER_DESTINATION'] = './.app_frozen/'
 
     app.config['prod'] = True
-    # We don't really support SSL given Cloudfront, but ...
-    app.config['STATIC_ROOT'] = '//d2ob8jnie7eh8t.cloudfront.net/s/'
+    app.config['STATIC_ROOT'] = '/s/'
